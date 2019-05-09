@@ -16,12 +16,17 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.jbehave', name: 'jbehave-core', version: '4.4'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-
+    compile group: 'org.reflections', name: 'reflections', version: '0.9.11'
 }
 
-task zip(type: Zip, group: "Archive", description: "Archives sources in a zip file") {
-    from "src"
-    setArchiveName "basic-demo-1.0.zip"
+task runTests(type: Test) {
+    doFirst {
+        file('target').mkdirs()
+    }
+
+    doLast {
+        file('target').delete()
+    }
 }
 
 
